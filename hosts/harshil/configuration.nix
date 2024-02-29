@@ -123,17 +123,11 @@
       clang
       cmake 
       python3
-      dtc
       ninja
-      ccache
-      dfu-util
-      xz
       gnumake
-      file
       obsidian
-      flatpak
-      thefuck
       jetbrains.rust-rover
+      pyprland
     ];
     shell = pkgs.fish;
   };

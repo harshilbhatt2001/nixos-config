@@ -20,6 +20,8 @@
 					"$mod SHIFT, F, fullscreen,0"
 					"$mod, V, togglesplit" # dwindle
 
+          "$mod SHIFT, RETURN, exec, pypr toggle term && hyprctl dispatch bringactivetotop"
+
 					"$mod, j, movefocus, d"
 					"$mod, k, movefocus, u"
 
@@ -54,8 +56,9 @@
 		};
 		extraConfig = ''
 			monitor=eDP-1,1920x1080@144,0x0,1
-      exec-once=waybar
+      exec-once = waybar
       exec-once = wl-clipboard-history -t
+      exec-once = pypr 
 			input {
 # Remap Capslock -> Esc for Vim users  
 #kb_options=caps:escape
@@ -145,6 +148,14 @@
 
 			binde = SUPER, up, resizeactive,0 -40
 			binde = SUPER, down, resizeactive,0 40
+      
+      $scratchpadsize = size 80% 85%
+
+      $scratchpad = class:^(scratchpad)$
+      windowrulev2 = float,$scratchpad
+      windowrulev2 = $scratchpadsize,$scratchpad
+      windowrulev2 = workspace special silent,$scratchpad
+      windowrulev2 = center,$scratchpad
 
 
 			'';
