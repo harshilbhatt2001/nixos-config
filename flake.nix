@@ -26,7 +26,7 @@
         nixos = nixpkgs.lib.nixosSystem {
             inherit system;
 	    modules = [ 
-              ./hosts/default/configuration.nix
+              ./hosts/harshil/configuration.nix
             ];
         };
       };

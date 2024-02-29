@@ -9,7 +9,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       # inputs.home-manager.nixosModules.default
-      ./fonts.nix
     ];
   
   # Enable experimental features
@@ -65,7 +64,7 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = false;
-  services.xserver.desktopManager.gnome.enable = false;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Enable Hyprland
   services.xserver.displayManager.sddm.enable = true;
@@ -180,8 +179,21 @@
     rofi-wayland
   ];
 
+  fonts.packages = with pkgs; [
+    # Fonts
+    (nerdfonts.override { fonts = [ "Inconsolata" ]; })
+    powerline
+    inconsolata
+    inconsolata-nerdfont
+    iosevka
+    font-awesome
+    ubuntu_font_family
+    terminus_font
+  ];
+
+
+
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
