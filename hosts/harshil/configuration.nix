@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       # inputs.home-manager.nixosModules.default
+      ./fonts.nix
     ];
   
   # Enable experimental features
@@ -49,9 +50,30 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  # Enable wayland
+  environment.sessionVariables = {
+    # If your cursor becomes invisible
+    WLR_NO_HARDWARE_CURSOR = "1";
+    # Hint electron to use wayland
+    NIXOS_OZONE_WL = "1";
+  };
+  hardware = {
+    opengl.enable = true;
+    nvidia.modesetting.enable = true;
+  };
+  security.polkit.enable = true;
+
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = false;
+  services.xserver.desktopManager.gnome.enable = false;
+
+  # Enable Hyprland
+  services.xserver.displayManager.sddm.enable = true;
+  programs.hyprland = {
+    enable = true;
+    #package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+  };
+  programs.waybar.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -62,9 +84,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable flatpak
-  services.flatpak.enable = true;
-
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -74,8 +93,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -134,13 +152,13 @@
   #  };
   #};
 
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "harshil";
+  ## Enable automatic login for the user.
+  #services.xserver.displayManager.autoLogin.enable = true;
+  #services.xserver.displayManager.autoLogin.user = "harshil";
 
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
+  ## Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  #systemd.services."getty@tty1".enable = false;
+  #systemd.services."autovt@tty1".enable = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -150,7 +168,20 @@
   environment.systemPackages = with pkgs; [
     vim 
     wget
+    waybar
+    (waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      })
+    )
+    dunst
+    libnotify
+    swww
+    kitty
+    rofi-wayland
   ];
+
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -17,11 +17,10 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
+  home.packages = with pkgs; [
+    gnomeExtensions.espresso
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.dash-to-dock
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -67,8 +66,73 @@
   #  /etc/profiles/per-user/harshil/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "nvim";
+    EDITOR = "nvim";
   };
+
+  dconf.settings = {
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+
+      # 'gnome-extensions list' for a list
+      enabled-extenstions = [
+        "espresso@coadmunkee.github.com"
+        "blur-my-shell@aunetx"
+        "dash-to-dock@micxgx.gmail.com"
+        "apps-menu@gnome-shell-extensions.gcampax.github.com"
+        "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
+        "drive-menu@gnome-shell-extensions.gcampax.github.com"
+        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "light-style@gnome-shell-extensions.gcampax.github.com"
+        "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+        "places-menu@gnome-shell-extensions.gcampax.github.com"
+        "screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "window-list@gnome-shell-extensions.gcampax.github.com"
+        "windowsNavigator@gnome-shell-extensions.gcampax.github.com"
+        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+      ];
+    };
+  };
+  
+  wayland.windowManager.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+
+    plugins = [
+	
+    ];
+
+    settings = {
+      "$mod" = "SUPER";
+      bind =
+        [
+          "$mod, RETURN, exec, kitty"
+          "$mod, F, exec, rofi"
+          "$mod, Q, exec, vivaldi"
+        ]
+        ++ (
+          # workspaces
+          # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+          builtins.concatLists (builtins.genList (
+              x: let
+                ws = let
+                  c = (x + 1) / 10;
+                in
+                  builtins.toString (x + 1 - (c * 10));
+              in [
+                "$mod, ${ws}, workspace, ${toString (x + 1)}"
+                "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+              ]
+            )
+            10)
+        );
+
+    };
+    extraConfig = ''
+    monitor=eDP-1,1920x1080@144,0x0,1
+    '';
+  };
+
 
   programs.fish.enable = true;
   programs.neovim.enable = true;
