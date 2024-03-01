@@ -8,5 +8,6 @@
     unzip
     brightnessctl
     fzf
+    pamixer
   ];
 }

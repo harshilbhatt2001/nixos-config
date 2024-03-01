@@ -142,20 +142,26 @@
 				hide_cursor_on_touch = true
 		}
 
-
 		binde = SUPER, left, resizeactive,-40 0
-			binde = SUPER, right, resizeactive,40 0
+    binde = SUPER, right, resizeactive,40 0
+		binde = SUPER, up, resizeactive,0 -40
+		binde = SUPER, down, resizeactive,0 40
 
-			binde = SUPER, up, resizeactive,0 -40
-			binde = SUPER, down, resizeactive,0 40
-      
-      $scratchpadsize = size 80% 85%
+    bind = ,XF86AudioMute, exec, pamixer --toggle-mute
+    binde = ,XF86AudioRaiseVolume, exec, pamixer -i 2
+    binde = ,XF86AudioLowerVolume, exec, pamixer -d 2
 
-      $scratchpad = class:^(scratchpad)$
-      windowrulev2 = float,$scratchpad
-      windowrulev2 = $scratchpadsize,$scratchpad
-      windowrulev2 = workspace special silent,$scratchpad
-      windowrulev2 = center,$scratchpad
+    bindle = ,XF86MonBrightnessUp, exec, brightnessctl s +2%
+    bindle = ,XF86MonBrightnessDown, exec, brightnessctl s  2%-
+
+
+    $scratchpadsize = size 80% 85%
+
+    $scratchpad = class:^(scratchpad)$
+    windowrulev2 = float,$scratchpad
+    windowrulev2 = $scratchpadsize,$scratchpad
+    windowrulev2 = workspace special silent,$scratchpad
+    windowrulev2 = center,$scratchpad
 
 
 			'';
