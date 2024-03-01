@@ -6,13 +6,15 @@
         mainBar = {
             layer = "top";
             modules-left = ["custom/launcher" "cpu" "memory" "hyprland/workspaces"];
-            modules-center = ["mpris"];
+            modules-center = ["hyprland/window"];
             modules-right = ["pulseaudio" "backlight" "battery" "clock" "tray"];
 
           "hyprland/workspaces" = {
             format = "{name}";
             all-outputs = true;
             on-click = "activate";
+	    on-scroll-up = "hyprctl dispatch workspace e+1";
+	    on-scroll-down = "hyprctl dispatch workspace e-1";
             format-icons = {
               active = " 󱎴";
               default = "󰍹";
@@ -170,7 +172,7 @@
 
           "custom/launcher" = {
             format = "󱄅";
-            on-click = "rofi -show drun &";
+            on-click = "rofi -show drun -show-icons &";
           };
 
           "custom/wallpaper" = {

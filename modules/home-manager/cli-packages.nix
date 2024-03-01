@@ -9,5 +9,7 @@
     brightnessctl
     fzf
     pamixer
+    clipman
+    pciutils
   ];
 }

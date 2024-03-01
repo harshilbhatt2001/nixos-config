@@ -21,6 +21,7 @@
 					"$mod, V, togglesplit" # dwindle
 
           "$mod SHIFT, RETURN, exec, pypr toggle term && hyprctl dispatch bringactivetotop"
+          "$mod, S, exec, pypr toggle spotify && hyprctl dispatch bringactivetotop"
 
 					"$mod, j, movefocus, d"
 					"$mod, k, movefocus, u"
@@ -33,9 +34,9 @@
 					"$mod SHIFT, k, movewindow,u"
 					"$mod SHIFT, j, movewindow,d"
 
-					"$mod, T, togglefloating"
-
+					"$mod SHIFT, SPACE, togglefloating"
 					]
+
 					++ (
 # workspaces
 # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
@@ -154,6 +155,10 @@
     bindle = ,XF86MonBrightnessUp, exec, brightnessctl s +2%
     bindle = ,XF86MonBrightnessDown, exec, brightnessctl s  2%-
 
+    binde = SUPER, bracketright, workspace, +1
+    binde = SUPER, bracketleft, workspace, -1
+    binde = SUPER, backslash, workspace, previous
+    bind = SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy
 
     $scratchpadsize = size 80% 85%
 
@@ -163,7 +168,13 @@
     windowrulev2 = workspace special silent,$scratchpad
     windowrulev2 = center,$scratchpad
 
+    $spotifypad = class:^(Spotify)$
+    windowrulev2 = float,$spotifypad
+    windowrulev2 = $scratchpadsize, $spotifypad
+    windowrulev2 = workspace special silent,$spotifypad
+    windowrulev2 = center,$spotifypad
+
 
 			'';
-	};
-}
+      };
+      }
