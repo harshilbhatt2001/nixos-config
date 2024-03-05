@@ -113,11 +113,11 @@
           };
 
           "battery" = {
-            bat = "BAT0";
+            bat = "BAT1";
             adapter = "ADP0";
             interval = 60;
             states = {
-              warning = 20;
+              warning = 30;
               critical = 15;
             };
             max-length = 20;
