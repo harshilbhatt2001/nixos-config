@@ -5,6 +5,7 @@
     ./modules/home-manager/hyprland.nix
     ./modules/home-manager/waybar.nix
     ./modules/home-manager/cli-packages.nix
+    ./modules/home-manager/packages.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -26,16 +27,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    gnomeExtensions.espresso
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.dash-to-dock
-    
-    (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"])
-
-    # Frontend for swww
-    waypaper
-
-    eww
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
