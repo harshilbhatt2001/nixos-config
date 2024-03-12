@@ -161,6 +161,9 @@
     binde = SUPER, backslash, workspace, previous
     bind = SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy
 
+    bindm = SUPER, mouse:272,movewindow
+    bindm = SUPER, mouse:273,resizewindow
+
     $scratchpadsize = size 80% 85%
 
     $scratchpad = class:^(scratchpad)$

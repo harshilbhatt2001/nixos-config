@@ -12,6 +12,7 @@
 
     eww
 
+    jdk17
     graphviz
   ];
 }
