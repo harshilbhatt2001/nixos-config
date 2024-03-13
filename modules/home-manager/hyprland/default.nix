@@ -178,6 +178,8 @@
     windowrulev2 = workspace special silent,$spotifypad
     windowrulev2 = center,$spotifypad
 
+    # windowrulev2=noinitialfocus,class:^jetbrains-(?!toolbox),floating:1
+    windowrulev2 = nofocus,class:^jetbrains-(?!toolbox),floating:1,title:^win\d+$ # Prevents jetbrains menu to disrupt window focus
 
 			'';
       };

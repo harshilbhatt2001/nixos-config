@@ -145,12 +145,29 @@
         "type": "github"
       }
     },
+    "plugin-undotree-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707485506,
+        "narHash": "sha256-FIYDyfkaIS9C16ClWKLMdpSPv/OrcOalVVsyFJBU2eI=",
+        "owner": "jiaoshijie",
+        "repo": "undotree",
+        "rev": "eab459ab87dd249617b5f7187bb69e614a083047",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jiaoshijie",
+        "repo": "undotree",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "plugin-undotree-nvim": "plugin-undotree-nvim"
       }
     },
     "systems": {

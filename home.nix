@@ -1,11 +1,12 @@
-{ config, pkgs, ... }:
+{inputs, config, pkgs, outputs, ... }:
 
 {
   imports = [
-    ./modules/home-manager/hyprland.nix
-    ./modules/home-manager/waybar.nix
+    ./modules/home-manager/hyprland
+    ./modules/home-manager/waybar
     ./modules/home-manager/cli-packages.nix
     ./modules/home-manager/packages.nix
+    ./modules/home-manager/nvim
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -22,7 +23,12 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    overlays = with outputs.overlays; [
+      nvim-plugins
+    ];
+    config.allowUnfree = true;
+  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
