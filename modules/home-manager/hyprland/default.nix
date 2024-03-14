@@ -58,9 +58,10 @@
 		extraConfig = ''
 			monitor=eDP-1,1920x1080@144,0x0,1
       exec-once = waybar
-      exec-once = swww-daemon
       exec-once = wl-clipboard-history -t
       exec-once = pypr 
+      exec-once = swaybg -i /home/harshil/Pictures/wallpapers/wallhaven-3911w9.jpg
+
 			input {
 # Remap Capslock -> Esc for Vim users  
 #kb_options=caps:escape

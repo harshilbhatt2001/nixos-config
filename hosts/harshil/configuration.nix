@@ -10,10 +10,13 @@
       ./hardware-configuration.nix
       #./../../modules/nixos/tlp.nix
       # inputs.home-manager.nixosModules.default
+      ./../../modules/nixos/fonts.nix
     ];
   
-  # Enable experimental features
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    auto-optimise-store = true;
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -121,24 +124,15 @@
     description = "Harshil Bhatt";
     extraGroups = [ "networkmanager" "wheel" "plugdev" "dialout" ];
     packages = with pkgs; [
-      firefox
       vivaldi
       neovim
       fish
       git
       kitty
-      rustup
-      vscode
-      spotify
-      autojump
       gcc
       clang
       cmake 
       python3
-      ninja
-      gnumake
-      obsidian
-      jetbrains.rust-rover
       pyprland
     ];
     shell = pkgs.fish;
@@ -181,25 +175,10 @@
     )
     dunst
     libnotify
-    swww
     kitty
     rofi-wayland
     openocd
   ];
-
-  fonts.packages = with pkgs; [
-    # Fonts
-    (nerdfonts.override { fonts = [ "Inconsolata" ]; })
-    powerline
-    inconsolata
-    inconsolata-nerdfont
-    iosevka
-    font-awesome
-    ubuntu_font_family
-    terminus_font
-  ];
-
-
 
   xdg.portal = {
     enable = true;

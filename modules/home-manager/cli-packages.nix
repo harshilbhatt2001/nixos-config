@@ -11,5 +11,7 @@
     pamixer
     clipman
     pciutils
+    difftastic
+    autojump
   ];
 }

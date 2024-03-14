@@ -7,12 +7,16 @@
 
     (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"])
 
-    # Frontend for swww
     waypaper
-
+    swaybg
     eww
 
     jdk17
     graphviz
+
+    obsidian
+    #jtbrains.rust-rover
+    vscode
+    spotify
   ];
 }

@@ -97,6 +97,22 @@
   programs.fish.enable = true;
   programs.neovim.enable = true;
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    nix-direnv.enable = true;
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "Harshil Bhatt";
+    userEmail = "harshilbhatt2001@gmail.com";
+    difftastic.enable = true;
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

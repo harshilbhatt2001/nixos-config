@@ -2,8 +2,7 @@
 
 {
   # Fonts are nice to have
-  fonts.fonts = with pkgs; [
-    # Fonts
+  fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Inconsolata" ]; })
     powerline
     inconsolata
@@ -12,7 +11,8 @@
     font-awesome
     ubuntu_font_family
     terminus_font
+    fira-code
+    fira-code-symbols
   ];
-
 }
 

@@ -32,7 +32,10 @@ programs.neovim =
     telescope-ui-select-nvim
     neodev-nvim
 
-    vim-fugitive
+    {
+      plugin = vim-fugitive;
+      config = toLuaFile ./plugins/fugitive.lua;
+    }
     
     FTerm-nvim
 
