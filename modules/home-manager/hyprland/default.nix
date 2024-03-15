@@ -35,6 +35,7 @@
 					"$mod SHIFT, j, movewindow,d"
 
 					"$mod SHIFT, SPACE, togglefloating"
+                    "$mod SHIFT, p, exec, grim -g \"$(slurp)\""
 					]
 
 					++ (

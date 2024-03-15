@@ -81,7 +81,10 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # Enable Hyprland
-  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm = {
+      enable = true;
+      theme = "where_is_my_sddm_theme";
+  };
   programs.hyprland = {
     enable = true;
     #package = inputs.hyprland.packages."${pkgs.system}".hyprland;

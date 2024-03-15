@@ -18,5 +18,9 @@
     #jtbrains.rust-rover
     vscode
     spotify
+
+    grim
+    slurp
+    sxiv
   ];
 }
