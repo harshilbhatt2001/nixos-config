@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    
+
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
@@ -28,24 +28,24 @@
       inherit (self) outputs;
     in
     {
-        overlays = import ./overlays { inherit inputs; };
-    
+      overlays = import ./overlays { inherit inputs; };
+
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
-            inherit system;
-	    modules = [ 
-              ./hosts/harshil/configuration.nix
-            ];
+          inherit system;
+          modules = [
+            ./hosts/harshil/configuration.nix
+          ];
         };
       };
 
       homeConfigurations = {
         harshil = home-manager.lib.homeManagerConfiguration {
-	    inherit pkgs;
-	    extraSpecialArgs = { inherit inputs outputs; };
-            modules = [ 
-	      ./home.nix
-            ];
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home.nix
+          ];
         };
       };
     };

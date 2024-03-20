@@ -122,4 +122,3 @@ require('rust-tools').setup({
         }
     },
 })
-

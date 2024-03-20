@@ -1,4 +1,4 @@
-{inputs, config, pkgs, outputs, ... }:
+{ inputs, config, pkgs, outputs, ... }:
 
 {
   imports = [
@@ -93,7 +93,7 @@
       ];
     };
   };
-  
+
   programs.fish.enable = true;
   programs.neovim.enable = true;
 

@@ -6,15 +6,16 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       #./../../modules/nixos/tlp.nix
       # inputs.home-manager.nixosModules.default
       ./../../modules/nixos/fonts.nix
     ];
-  
+
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
   };
 
@@ -82,8 +83,8 @@
 
   # Enable Hyprland
   services.xserver.displayManager.sddm = {
-      enable = true;
-      theme = "where_is_my_sddm_theme";
+    enable = true;
+    theme = "where_is_my_sddm_theme";
   };
   programs.hyprland = {
     enable = true;
@@ -136,7 +137,7 @@
       kitty
       gcc
       clang
-      cmake 
+      cmake
       python3
       pyprland
       #nrf-command-line-tools
@@ -145,16 +146,16 @@
   };
 
   nixpkgs.config.permittedInsecurePackages = [
-      "segger-jlink-qt4-794a"
+    "segger-jlink-qt4-794a"
   ];
   nixpkgs.config.segger-jlink.acceptLicense = true;
-  
+
   programs = {
     fish.enable = true;
     neovim.enable = true;
     neovim.defaultEditor = true;
   };
-  
+
   #home-manager = {
   #  # also pass inputs to home-manager modules
   #  extraSpecialArgs = {inherit inputs;};
@@ -177,12 +178,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim 
+    vim
     wget
     waybar
     (waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      })
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    })
     )
     dunst
     libnotify

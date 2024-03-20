@@ -28,3 +28,7 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "120"
 
+vim.opt.spell = true
+vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
+
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
