@@ -117,6 +117,8 @@
     #media-session.enable = true;
   };
 
+  services.flatpak.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -137,9 +139,15 @@
       cmake 
       python3
       pyprland
+      #nrf-command-line-tools
     ];
     shell = pkgs.fish;
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+      "segger-jlink-qt4-794a"
+  ];
+  nixpkgs.config.segger-jlink.acceptLicense = true;
   
   programs = {
     fish.enable = true;

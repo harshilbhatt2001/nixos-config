@@ -30,7 +30,15 @@ programs.neovim =
       config = toLuaFile ./plugins/telescope.lua;
     }
     telescope-ui-select-nvim
+    {
+        plugin = neogit;
+        config = toLua ''
+            require('neogit').setup {}
+        '';
+    }
     neodev-nvim
+    plenary-nvim
+    diffview-nvim
 
     {
       plugin = vim-fugitive;
@@ -88,7 +96,7 @@ programs.neovim =
 
   extraLuaConfig = ''
     ${builtins.readFile ./options.lua}
-    ${builtins.readFile ./keymaps.lua}
+    ${builtins.readFile ./remap.lua}
   '';
 };
 }

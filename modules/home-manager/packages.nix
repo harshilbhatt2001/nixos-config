@@ -18,6 +18,7 @@
     #jtbrains.rust-rover
     vscode
     spotify
+    rustup
 
     grim
     slurp
