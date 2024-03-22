@@ -45,6 +45,11 @@
           config = toLuaFile ./plugins/fugitive.lua;
         }
 
+        {
+          plugin = todo-comments-nvim;
+          config = toLua '' require('todo-comments').setup() '';
+        }
+
         FTerm-nvim
 
         cmp-nvim-lsp
@@ -53,6 +58,7 @@
         cmp-path
         cmp-git
         cmp-calc
+        cmp-cmdline
         cmp_luasnip
         copilot-cmp
         luasnip

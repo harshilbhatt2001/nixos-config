@@ -9,7 +9,6 @@
 
     waypaper
     swaybg
-    eww
 
     jdk17
     graphviz
@@ -19,6 +18,7 @@
     vscode
     spotify
     rustup
+    lazygit
 
     grim
     slurp
