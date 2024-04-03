@@ -134,8 +134,9 @@
 
           dwindle {
               pseudotile=1 # enable pseudotiling on dwindle
-                  force_split=0animation=windows,1,8,default,popin 80%
-                  no_gaps_when_only = true
+              force_split=0
+              animation=windows,1,8,default,popin 80%
+              no_gaps_when_only = true
           }
 
           master {

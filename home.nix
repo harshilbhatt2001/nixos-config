@@ -111,6 +111,17 @@
     difftastic.enable = true;
     extraConfig = {
       init.defaultBranch = "main";
+      rerere.enabled = "true";
+      column.ui = "auto";
+    };
+  };
+
+  programs.kitty = {
+    enable = true;
+    settings = {
+      background_opacity = "0.7";
+    allow_remote_control = "yes";
+    window_padding_width = 4;
     };
   };
 

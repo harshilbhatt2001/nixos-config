@@ -21,7 +21,6 @@
         # Language servers
         clang-tools
         lua-language-server
-        rnix-lsp
       ];
 
       plugins = with pkgs.vimPlugins; [
