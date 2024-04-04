@@ -126,10 +126,10 @@
                   enabled=1
                       bezier=overshot,0.13,0.99,0.29,1.1
                       animation=windows,1,4,overshot,slide
-                      animation=fadeIn,1,10,default
+                      animation=fadeIn,1,8,default
                       animation=workspaces,1,8.8,overshot,slide
-                      animation=border,1,14,default
-      #animation=windows,1,8,default,popin 80%
+                      animation=border,1,12,default
+      #animation=windows,1,6,default,popin 80%
               }
 
           dwindle {
