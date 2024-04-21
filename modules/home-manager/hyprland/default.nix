@@ -18,6 +18,7 @@
           "$mod, Q, killactive"
           "$mod, F, fullscreen,1"
           "$mod SHIFT, F, fullscreen,0"
+          "$mod SHIFT, R, exec,ags -q; ags"
           "$mod, V, togglesplit" # dwindle
 
           "$mod SHIFT, RETURN, exec, pypr toggle term && hyprctl dispatch bringactivetotop"
@@ -64,6 +65,7 @@
               monitor=eDP-1,1920x1080@144,0x0,1
               monitor=,preferred,auto,1,mirror,eDP-1
               exec-once = waybar
+              exec-once = ags
               exec-once = wl-clipboard-history -t
               exec-once = pypr 
               exec-once = swaybg -i /home/harshil/Pictures/wallpapers/thiemeyer_road_to_samarkand.jpg

@@ -21,7 +21,7 @@
     };
 
     ags.url = "github:Aylur/ags";
-
+    astal.url = "github:Aylur/astal";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
