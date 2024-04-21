@@ -66,7 +66,7 @@
               exec-once = waybar
               exec-once = wl-clipboard-history -t
               exec-once = pypr 
-              exec-once = swaybg -i /home/harshil/Pictures/wallpapers/wallhaven-3911w9.jpg
+              exec-once = swaybg -i /home/harshil/Pictures/wallpapers/thiemeyer_road_to_samarkand.jpg
 
               input {
       # Remap Capslock -> Esc for Vim users  

@@ -95,13 +95,29 @@
     };
   };
 
-  programs.fish.enable = true;
+  programs.fish = {
+      enable = true;
+      interactiveShellInit = ''
+          set fish_greeting # Disable greeting
+          '';
+      plugins = [
+        { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+        { name = "z"; src = pkgs.fishPlugins.z.src; }
+        { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
+        { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
+      ];
+  };
+
   programs.neovim.enable = true;
 
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
     nix-direnv.enable = true;
+  };
+
+  programs.starship = {
+      enable = true;
   };
 
   programs.git = {

@@ -16,7 +16,6 @@
     obsidian
     #jtbrains.rust-rover
     vscode
-    spotify
     rustup
     lazygit
 

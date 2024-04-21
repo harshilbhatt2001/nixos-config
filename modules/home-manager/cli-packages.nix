@@ -13,5 +13,7 @@
     pciutils
     difftastic
     autojump
+    grc
+    spotify-player
   ];
 }
