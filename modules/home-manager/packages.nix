@@ -23,5 +23,7 @@
     grim
     slurp
     sxiv
+
+    distrobox
   ];
 }

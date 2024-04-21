@@ -120,6 +120,8 @@
 
   services.flatpak.enable = true;
 
+  virtualisation.docker.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -128,7 +130,7 @@
   users.users.harshil = {
     isNormalUser = true;
     description = "Harshil Bhatt";
-    extraGroups = [ "networkmanager" "wheel" "plugdev" "dialout" ];
+    extraGroups = [ "networkmanager" "wheel" "plugdev" "dialout" "docker" ];
     packages = with pkgs; [
       vivaldi
       neovim

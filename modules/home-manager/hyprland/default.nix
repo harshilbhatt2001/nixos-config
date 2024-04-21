@@ -145,7 +145,7 @@
           }
 
           misc {
-              disable_hyprland_logo=false
+              disable_hyprland_logo=true
                   disable_splash_rendering=true
                   mouse_move_enables_dpms=true
                   vfr = true
@@ -175,19 +175,19 @@
               $scratchpadsize = size 80% 85%
 
               $scratchpad = class:^(scratchpad)$
-                                    windowrulev2 = float,$scratchpad
-                                    windowrulev2 = $scratchpadsize,$scratchpad
-                                    windowrulev2 = workspace special silent,$scratchpad
-                                    windowrulev2 = center,$scratchpad
+              windowrulev2 = float,$scratchpad
+              windowrulev2 = $scratchpadsize,$scratchpad
+              windowrulev2 = workspace special silent,$scratchpad
+              windowrulev2 = center,$scratchpad
 
-                                    $spotifypad = class:^(Spotify)$
-                                                          windowrulev2 = float,$spotifypad
-                                                          windowrulev2 = $scratchpadsize, $spotifypad
-                                                          windowrulev2 = workspace special silent,$spotifypad
-                                                          windowrulev2 = center,$spotifypad
+              $spotifypad = class:^(Spotify)$
+              windowrulev2 = float,$spotifypad
+              windowrulev2 = $scratchpadsize, $spotifypad
+              windowrulev2 = workspace special silent,$spotifypad
+              windowrulev2 = center,$spotifypad
 
-      # windowrulev2=noinitialfocus,class:^jetbrains-(?!toolbox),floating:1
-                                                          windowrulev2 = nofocus,class:^jetbrains-(?!toolbox),floating:1,title:^win\d+$ # Prevents jetbrains menu to disrupt window focus
+             # windowrulev2=noinitialfocus,class:^jetbrains-(?!toolbox),floating:1
+             windowrulev2 = nofocus,class:^jetbrains-(?!toolbox),floating:1,title:^win\d+$ # Prevents jetbrains menu to disrupt window focus
 
     '';
   };
