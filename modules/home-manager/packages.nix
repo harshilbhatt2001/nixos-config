@@ -5,7 +5,7 @@
     gnomeExtensions.blur-my-shell
     gnomeExtensions.dash-to-dock
 
-    (jetbrains.plugins.addPlugins jetbrains.rust-rover [ "github-copilot" ])
+    #(jetbrains.plugins.addPlugins jetbrains.rust-rover [ "github-copilot" ])
 
     waypaper
     swaybg
@@ -33,5 +33,6 @@
 
     nodePackages_latest.bash-language-server
 
+    android-studio
   ];
 }

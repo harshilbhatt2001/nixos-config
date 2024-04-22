@@ -144,6 +144,23 @@
     xkb.variant = "";
   };
 
+  # Enable libvirt daemon
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+      ovmf = {
+        enable = true;
+        packages = [(pkgs.OVMF.override {
+          secureBoot = true;
+          tpmSupport = true;
+        }).fd];
+      };
+    };
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -175,7 +192,7 @@
   users.users.harshil = {
     isNormalUser = true;
     description = "Harshil Bhatt";
-    extraGroups = [ "networkmanager" "wheel" "plugdev" "dialout" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "plugdev" "dialout" "docker" "libvirtd" ];
     packages = with pkgs; [
       vivaldi
       neovim
@@ -237,6 +254,12 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
   };
 
   # Some programs need SUID wrappers, can be configured further or are

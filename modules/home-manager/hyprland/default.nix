@@ -182,7 +182,7 @@
               windowrulev2 = workspace special silent,$scratchpad
               windowrulev2 = center,$scratchpad
 
-              $spotifypad = class:^(Spotify)$
+              $spotifypad = class:^(scratchpad)$
               windowrulev2 = float,$spotifypad
               windowrulev2 = $scratchpadsize, $spotifypad
               windowrulev2 = workspace special silent,$spotifypad
