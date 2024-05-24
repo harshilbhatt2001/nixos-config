@@ -137,7 +137,7 @@
   #programs.waybar.enable = true;
 
   stylix.image = ../../wallpapers/thiemeyer_road_to_samarkand.jpg;
-  #stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 
   # Configure keymap in X11
   services.xserver = {

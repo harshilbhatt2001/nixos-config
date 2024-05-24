@@ -22,9 +22,10 @@
 
     ags.url = "github:Aylur/ags";
     astal.url = "github:Aylur/astal";
+    stylix.url = "github:danth/stylix/release-23.11";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -35,9 +36,10 @@
 
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
-          inherit system;
+          inherit system; 
           modules = [
             ./hosts/harshil/configuration.nix
+            stylix.nixosModules.stylix
           ];
         };
       };
