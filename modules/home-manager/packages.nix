@@ -34,5 +34,9 @@
     nodePackages_latest.bash-language-server
 
     android-studio
+    displaylink
+
+    mendeley
+    zlib
   ];
 }

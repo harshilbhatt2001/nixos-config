@@ -111,6 +111,9 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.displayManager.sessionCommands = ''
+      ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
+      '';
 
   # Enable wayland
   environment.sessionVariables = {
@@ -126,10 +129,6 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # Enable Hyprland
-  #services.xserver.displayManager.sddm = {
-  #  enable = true;
-  #  theme = "where_is_my_sddm_theme";
-  #};
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -137,6 +136,8 @@
   };
   #programs.waybar.enable = true;
 
+  stylix.image = ../../wallpapers/thiemeyer_road_to_samarkand.jpg;
+  #stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 
   # Configure keymap in X11
   services.xserver = {
@@ -192,7 +193,7 @@
   users.users.harshil = {
     isNormalUser = true;
     description = "Harshil Bhatt";
-    extraGroups = [ "networkmanager" "wheel" "plugdev" "dialout" "docker" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "plugdev" "dialout" "docker" "libvirtd" "plugdev"];
     packages = with pkgs; [
       vivaldi
       neovim
@@ -204,6 +205,7 @@
       cmake
       python3
       pyprland
+      displaylink
       #nrf-command-line-tools
     ];
     shell = pkgs.fish;

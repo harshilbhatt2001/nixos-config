@@ -105,6 +105,15 @@ require('lspconfig').clangd.setup {
     capabilities = capabilities,
 }
 
+require('lspconfig').pyright.setup {
+    cmd = { "pyright-langserver", "--stdio" },
+    root_dir = function()
+        return vim.loop.cwd()
+    end,
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
 require('rust-tools').setup({
     server = {
         on_attach = on_attach,

@@ -21,6 +21,7 @@
         # Language servers
         clang-tools
         lua-language-server
+        pyright
       ];
 
       plugins = with pkgs.vimPlugins; [
@@ -51,6 +52,7 @@
 
         FTerm-nvim
 
+        vim-python-pep8-indent
         cmp-nvim-lsp
         cmp-nvim-lsp-signature-help
         cmp-buffer
