@@ -125,7 +125,8 @@
   security.polkit.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = false;
+  #services.xserver.displayManager.gdm.enable = false;
+  services.xserver.displayManager.sddm.enable = false;
   services.xserver.desktopManager.gnome.enable = true;
 
   # Enable Hyprland
@@ -136,8 +137,20 @@
   };
   #programs.waybar.enable = true;
 
-  stylix.image = ../../wallpapers/thiemeyer_road_to_samarkand.jpg;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+  stylix = {
+    image = ../../wallpapers/thiemeyer_road_to_samarkand.jpg;
+    #polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    targets = {
+      console.enable = true;
+      chromium.enable = true;
+      fish.enable = true;
+      gnome.enable = true; 
+      grub.enable = true;
+      grub.useImage = true;
+      gtk.enable = true;
+    };
+  };
 
   # Configure keymap in X11
   services.xserver = {
