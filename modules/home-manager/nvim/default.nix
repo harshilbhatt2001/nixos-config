@@ -21,6 +21,7 @@
         # Language servers
         clang-tools
         lua-language-server
+        kotlin-language-server
         pyright
       ];
 

@@ -37,6 +37,7 @@
 
           "$mod SHIFT, SPACE, togglefloating"
           "$mod SHIFT, p, exec, grim -g \"$(slurp)\""
+          "$mod, BackSpace, exec, hyprlock"
         ]
 
         ++ (

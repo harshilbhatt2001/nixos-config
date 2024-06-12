@@ -38,5 +38,8 @@
 
     mendeley
     zlib
+    cachix
+
+    hyprlock
   ];
 }
