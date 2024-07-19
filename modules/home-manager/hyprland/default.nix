@@ -65,7 +65,7 @@
     extraConfig = ''
               monitor=eDP-1,1920x1080@144,0x0,1
               monitor=,preferred,auto,1
-              exec-once = waybar
+              #exec-once = waybar
               exec-once = ags
               exec-once = wl-clipboard-history -t
               exec-once = pypr 
@@ -123,7 +123,7 @@
           }
 
       # Blur for waybar 
-          blurls=waybar
+          #blurls=waybar
 
               animations {
                   enabled=1
