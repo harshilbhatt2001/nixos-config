@@ -139,7 +139,7 @@
 
   stylix = {
     image = ../../wallpapers/thiemeyer_road_to_samarkand.jpg;
-    #polarity = "dark";
+    polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     targets = {
       console.enable = true;

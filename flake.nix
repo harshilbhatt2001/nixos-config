@@ -22,7 +22,7 @@
 
     ags.url = "github:Aylur/ags";
     astal.url = "github:Aylur/astal";
-    stylix.url = "github:danth/stylix/release-23.11";
+    stylix.url = "github:danth/stylix/release-24.05";
   };
 
   outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
