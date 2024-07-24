@@ -17,6 +17,7 @@
         nodejs_21 # Required for copilot-vim
         ripgrep # Required for telescope
         wl-clipboard # Required for clipboard sync
+        typescript # Required for typescript-tools-nvim
 
         # Language servers
         clang-tools
@@ -80,6 +81,7 @@
           config = toLuaFile ./plugins/lsp.lua;
         }
         rust-tools-nvim
+        typescript-tools-nvim
 
         rainbow-delimiters-nvim
 

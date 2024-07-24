@@ -42,7 +42,12 @@
 
     configDir = ./.;
 
-    extraPackages = with pkgs; [ libsoup_3 ];
+    extraPackages = with pkgs; [ 
+      libsoup_3 
+      gtksourceview
+      webkitgtk
+      accountsservice
+    ];
   };
 
   programs.astal = {
