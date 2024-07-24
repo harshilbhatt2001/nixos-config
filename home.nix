@@ -3,7 +3,7 @@
 {
   imports = [
     ./modules/home-manager/hyprland
-    #./modules/home-manager/waybar
+    ./modules/home-manager/waybar
     ./modules/home-manager/cli-packages.nix
     ./modules/home-manager/packages.nix
     ./modules/home-manager/nvim
