@@ -4,12 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,8 +14,19 @@
       flake = false;
     };
 
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-plugins = {
+        url = "github:hyprwm/hyprland-plugins";
+        inputs.hyprland.follows = "hyprland";
+    };
+    hyprland-hyprspace = {
+        url = "github:KZDKM/hyprspace";
+        inputs.hyprland.follows = "hyprland";
+    };
+
     ags.url = "github:Aylur/ags";
     astal.url = "github:Aylur/astal";
+    matugen.url = "github:InioX/matugen?ref=v2.2.0";
     stylix.url = "github:danth/stylix/release-24.05";
   };
 
