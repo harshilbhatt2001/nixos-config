@@ -10,7 +10,6 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       #./../../modules/nixos/tlp.nix
-      # inputs.home-manager.nixosModules.default
       ./../../modules/nixos/fonts.nix
     ];
 

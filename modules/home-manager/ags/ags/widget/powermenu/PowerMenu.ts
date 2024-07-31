@@ -34,19 +34,21 @@ export default () => PopupWindow({
             switch (layout) {
                 case "line": return [
                     SysButton("shutdown", "Shutdown"),
-                    SysButton("logout", "Log Out"),
                     SysButton("reboot", "Reboot"),
+                    SysButton("logout", "Log Out"),
                     SysButton("sleep", "Sleep"),
+                    SysButton("lock", "Lock"),
                 ]
                 case "box": return [
                     Widget.Box(
                         { vertical: true },
                         SysButton("shutdown", "Shutdown"),
+                        SysButton("reboot", "Reboot"),
                         SysButton("logout", "Log Out"),
                     ),
                     Widget.Box(
                         { vertical: true },
-                        SysButton("reboot", "Reboot"),
+                        SysButton("lock", "Lock"),
                         SysButton("sleep", "Sleep"),
                     ),
                 ]
