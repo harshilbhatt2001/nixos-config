@@ -158,6 +158,7 @@ const options = mkOptions(OPTIONS, {
             favorites: opt([
                 [
                     "vivaldi",
+                    "obsidian",
                     "kitty",
                     //"org.gnome.Nautilus",
                     //"org.gnome.Calendar",

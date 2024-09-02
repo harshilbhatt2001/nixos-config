@@ -13,6 +13,7 @@
     terminus_font
     fira-code
     fira-code-symbols
+    jetbrains-mono
   ];
 }
 

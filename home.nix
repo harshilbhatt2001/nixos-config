@@ -7,7 +7,7 @@
     ./modules/home-manager/cli-packages.nix
     ./modules/home-manager/packages.nix
     ./modules/home-manager/nvim
-    ./modules/home-manager/ags
+    ./modules/home-manager/ags/ags.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

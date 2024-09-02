@@ -253,11 +253,11 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    waybar
-    (waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    })
-    )
+    #waybar
+    #(waybar.overrideAttrs (oldAttrs: {
+    #  mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    #})
+    #)
     #dunst
     libnotify
     kitty
