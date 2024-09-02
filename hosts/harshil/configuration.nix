@@ -25,6 +25,8 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
   boot.supportedFilesystems = [ "ntfs" ];
   boot.kernelParams = ["nvidia-drm.modeset=1"];
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
 
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -41,11 +43,12 @@
   #services.tlp.enable = true;
 
   # Enable OpenGL
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+  hardware.graphics.enable = true;
+  #hardware.opengl = {
+  #  enable = true;
+  #  driSupport = true;
+  #  driSupport32Bit = true;
+  #};
 
     # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
@@ -79,16 +82,24 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    #package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      version = "560.35.03";
+      sha256_64bit = "sha256-8pMskvrdQ8WyNBvkU/xPc/CtcYXCa7ekP73oGuKfH+M=";
+      sha256_aarch64 = "sha256-s8ZAVKvRNXpjxRYqM3E5oss5FdqW+tv1qQC2pDjfG+s=";
+      openSha256 = "sha256-/32Zf0dKrofTmPZ3Ratw4vDM7B+OgpC4p7s+RHUjCrg=";
+      settingsSha256 = "sha256-kQsvDgnxis9ANFmwIwB7HX5MkIAcpEEAHc8IBOLdXvk=";
+      persistencedSha256 = "sha256-E2J2wYYyRu7Kc3MMZz/8ZIemcZg68rkzvqEwFAL3fFs=";
+    };
   };
-  hardware.nvidia.prime = {
-      offload = {
-          enable = true;
-          enableOffloadCmd = true;
-      };
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-  };
+  #hardware.nvidia.prime = {
+  #    offload = {
+  #        enable = true;
+  #        enableOffloadCmd = true;
+  #    };
+  #    intelBusId = "PCI:0:2:0";
+  #    nvidiaBusId = "PCI:1:0:0";
+  #};
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -125,14 +136,17 @@
 
   # Enable the GNOME Desktop Environment.
   #services.xserver.displayManager.gdm.enable = false;
-  services.xserver.displayManager.sddm.enable = false;
+  services.displayManager.sddm.enable = false;
   services.xserver.desktopManager.gnome.enable = true;
 
   # Enable Hyprland
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    #package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    # set the flake package
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # make sure to also set the portal package, so that they are in sync
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
   #programs.waybar.enable = true;
 
@@ -178,7 +192,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  #sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -217,8 +231,7 @@
       cmake
       python3
       pyprland
-      displaylink
-      #nrf-command-line-tools
+      #displaylink
     ];
     shell = pkgs.fish;
   };

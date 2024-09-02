@@ -5,9 +5,7 @@
     systemd.enable = true;
     xwayland.enable = true;
 
-    plugins = [
-
-    ];
+    #plugins = [];
 
     settings = {
       exec-once = [
