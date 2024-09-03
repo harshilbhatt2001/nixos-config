@@ -27,6 +27,7 @@
   nixpkgs = {
     overlays = with outputs.overlays; [
       nvim-plugins
+      custom-pkgs
     ];
     config.allowUnfree = true;
   };

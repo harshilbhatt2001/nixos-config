@@ -41,5 +41,7 @@
     cachix
 
     hyprlock
+
+    cursor
   ];
 }

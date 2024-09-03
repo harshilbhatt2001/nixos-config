@@ -232,7 +232,6 @@
       cmake
       python3
       pyprland
-      #displaylink
     ];
     shell = pkgs.fish;
   };
