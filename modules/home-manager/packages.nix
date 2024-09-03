@@ -34,7 +34,7 @@
     nodePackages_latest.bash-language-server
 
     android-studio
-    displaylink
+    #displaylink
 
     mendeley
     zlib

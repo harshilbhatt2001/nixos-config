@@ -30,6 +30,9 @@
     astal.url = "github:Aylur/astal";
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
     stylix.url = "github:danth/stylix/release-24.05";
+
+    zen-browser.url = "github:MarceColl/zen-browser-flake"; # Replace once zen's added to nixpkgs
+
   };
 
   outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:

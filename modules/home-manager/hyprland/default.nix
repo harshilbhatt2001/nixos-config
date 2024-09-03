@@ -81,7 +81,7 @@
         disable_splash_rendering = "true";
         mouse_move_enables_dpms = "true";
         vfr = "true";
-        hide_cursor_on_touch = "true";
+        #hide_cursor_on_touch = "true";
       };
 
 # Blurs for waybar
@@ -106,7 +106,7 @@
       in
         [
           "$mod, RETURN, exec, kitty"
-          "$mod, W, exec, vivaldi"
+          "$mod, W, exec, zen"
           "$mod, Q, killactive"
           "$mod, F, fullscreen,1"
           "$mod SHIFT, F, fullscreen,0"
@@ -202,6 +202,8 @@
     ];
 
     };
-    extraConfig = '''';
+    extraConfig = ''
+        env = AQ_RRM_DEVICES,/dev/dri/card2:/dev/dri/card1
+    '';
   };
 }

@@ -157,7 +157,7 @@ const options = mkOptions(OPTIONS, {
             max: opt(6),
             favorites: opt([
                 [
-                    "vivaldi",
+                    "zen",
                     "obsidian",
                     "kitty",
                     //"org.gnome.Nautilus",

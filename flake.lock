@@ -57,11 +57,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1725294584,
-        "narHash": "sha256-ioYCmcVDmH6Q5pjQUl6aYhNH+K8FkOAUp6OBsLmDfig=",
+        "lastModified": 1725298801,
+        "narHash": "sha256-atkULh6TggLop3ZeluuJ/yE3jNxczg7i+UrwYAF2aiM=",
         "owner": "Aylur",
         "repo": "astal",
-        "rev": "8071a20035fb1119edef877f29b02893dbef76dd",
+        "rev": "b8acc3897f5c48a5fc4ba73921c77cae2e91598c",
         "type": "github"
       },
       "original": {
@@ -601,6 +601,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_7": {
+      "locked": {
+        "lastModified": 1724819573,
+        "narHash": "sha256-GnR7/ibgIH1vhoy8cYdmXE6iyZqKqFxQSVkFgosBh6w=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "71e91c409d1e654808b2621f28a327acfdad8dc2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "plugin-undotree-nvim": {
       "flake": false,
       "locked": {
@@ -628,7 +644,8 @@
         "matugen": "matugen",
         "nixpkgs": "nixpkgs_5",
         "plugin-undotree-nvim": "plugin-undotree-nvim",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "zen-browser": "zen-browser"
       }
     },
     "stylix": {
@@ -717,6 +734,24 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_7"
+      },
+      "locked": {
+        "lastModified": 1725096998,
+        "narHash": "sha256-ylP5YehroiFnf1AIT5yq1mcc8HUVlj9ItsWCtY6J6ck=",
+        "owner": "MarceColl",
+        "repo": "zen-browser-flake",
+        "rev": "cfc894abb631e3ea61ff590b7520d79d35a26366",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MarceColl",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

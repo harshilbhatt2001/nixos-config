@@ -14,6 +14,6 @@
     difftastic
     autojump
     grc
-    spotify-player
+    #spotify-player
   ];
 }
