@@ -22,13 +22,11 @@
   
       general = {
         layout = "dwindle";
-        sensitivity = "1.0"; # for mouse cursor
         #gaps_in = "1";   #7
         #gaps_out = "0";  #2
         border_size = "2";
         "col.active_border" = "0x66333333";
         "col.inactive_border" = "0x66333333";
-        apply_sens_to_raw = "0"; # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
       };
 
       gestures = {
