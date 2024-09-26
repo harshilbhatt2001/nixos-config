@@ -145,7 +145,7 @@
   programs.kitty = {
     enable = true;
     settings = {
-      background_opacity = "0.7";
+      background_opacity = "0.6";
     allow_remote_control = "yes";
     window_padding_width = 4;
     };

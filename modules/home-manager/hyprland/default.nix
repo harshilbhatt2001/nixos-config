@@ -12,7 +12,7 @@
         "ags -b hypr"
         "wl-clipboard-history -t"
         "pypr"
-        "swaybg -i /home/harshil/Pictures/wallpapers/thiemeyer_road_to_samarkand.jpg"
+        "swaybg -i /home/harshil/Pictures/wallpapers/xavier-cuenca.jpg"
       ];
 
       monitor = [

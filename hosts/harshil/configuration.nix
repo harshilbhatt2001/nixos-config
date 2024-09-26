@@ -151,7 +151,7 @@
   #programs.waybar.enable = true;
 
   stylix = {
-    image = ../../wallpapers/thiemeyer_road_to_samarkand.jpg;
+    image = ../../wallpapers/xavier-cuenca.jpg;
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     targets = {
