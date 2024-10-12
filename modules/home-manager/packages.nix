@@ -33,7 +33,7 @@
 
     nodePackages_latest.bash-language-server
 
-    android-studio
+    #android-studio
     #displaylink
 
     mendeley
@@ -43,5 +43,14 @@
     hyprlock
 
     cursor
+    nrf-command-line-tools
+
+    radvd
   ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+      "segger-jlink-qt4-796s"
+  ];
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.segger-jlink.acceptLicense = true;
 }

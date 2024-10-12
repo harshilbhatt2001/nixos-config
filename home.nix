@@ -69,6 +69,7 @@
   #
   home.sessionVariables = {
     EDITOR = "nvim";
+    NIXOS_OZONE_WL = "1";
   };
 
   dconf.settings = {
@@ -114,6 +115,7 @@
         { name = "grc"; src = pkgs.fishPlugins.grc.src; }
         { name = "z"; src = pkgs.fishPlugins.z.src; }
         { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
+        { name = "bass"; src = pkgs.fishPlugins.bass.src; }
         { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
       ];
   };

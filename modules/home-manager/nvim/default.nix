@@ -26,6 +26,7 @@
         pyright
       ];
 
+
       plugins = with pkgs.vimPlugins; [
         {
           plugin = telescope-nvim;
@@ -41,6 +42,8 @@
         neodev-nvim
         plenary-nvim
         diffview-nvim
+        nvim-treesitter-parsers.devicetree
+        nvim-treesitter-parsers.kconfig
 
         {
           plugin = vim-fugitive;
