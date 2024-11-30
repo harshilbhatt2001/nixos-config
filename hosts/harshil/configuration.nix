@@ -25,7 +25,8 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
   boot.supportedFilesystems = [ "ntfs" ];
   boot.kernelParams = ["nvidia-drm.modeset=1"];
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_11;
 
 
 
@@ -63,11 +64,11 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
     # of just the bare essentials.
-    powerManagement.enable = false;
+    powerManagement.enable = true;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
+    powerManagement.finegrained = true;
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
@@ -83,7 +84,7 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
     #package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
     #  version = "560.35.03";
     #  sha256_64bit = "sha256-8pMskvrdQ8WyNBvkU/xPc/CtcYXCa7ekP73oGuKfH+M=";
@@ -120,6 +121,11 @@
     LC_TIME = "en_IN";
   };
 
+
+  environment.variables = {
+    FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.displayManager.sessionCommands = ''
@@ -135,10 +141,10 @@
   };
   security.polkit.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  #services.xserver.displayManager.gdm.enable = false;
-  services.displayManager.sddm.enable = false;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    theme = "where_is_my_sddm_theme";
+  };
 
   # Enable Hyprland
   programs.hyprland = {
@@ -152,9 +158,10 @@
   #programs.waybar.enable = true;
 
   stylix = {
+    enable = true;
     image = ../../wallpapers/xavier-cuenca.jpg;
     polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    #base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     targets = {
       console.enable = true;
       chromium.enable = true;
@@ -189,11 +196,17 @@
     };
   };
 
+  virtualisation.podman = {
+    enable = true;
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound with pipewire.
   #sound.enable = true;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -277,6 +290,13 @@
     kitty
     rofi-wayland
     openocd
+    where-is-my-sddm-theme
+    #(where-is-my-sddm-theme.override {
+    #  themeConfig.General = {
+    #    background = toString ../../wallpapers/xavier-cuenca.jpg;
+    #    backgroundMode = "fill";
+    #    };
+    #  })
   ];
 
   xdg.portal = {

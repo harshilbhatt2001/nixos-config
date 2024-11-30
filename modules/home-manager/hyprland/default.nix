@@ -9,10 +9,11 @@
 
     settings = {
       exec-once = [
-        "ags -b hypr"
+        #"ags -b hypr"
         "wl-clipboard-history -t"
         "pypr"
         "swaybg -i /home/harshil/Pictures/wallpapers/xavier-cuenca.jpg"
+        "hyprpanel"
       ];
 
       monitor = [
@@ -56,22 +57,24 @@
             passes = "3"; # minimum 1, more passes = more resource intensive.
             new_optimizations = "true";
         };
-        drop_shadow = "true";
-        shadow_range = "25";
-        "col.shadow" = "rgb(252626)"; #0xffa7caff #86AAEC
-        "col.shadow_inactive" = "0x50000000";
+        shadow = {
+          enabled = "true";
+          range = "25";
+          color = "0xffbo766b";
+          color_inactive = "0x50000000";
+        };
       };
 
       dwindle = {
         pseudotile = "1";
         force_split = "0";
         animation = "windows,1,8,default,popin 80%";
-        no_gaps_when_only = "true";
+        #no_gaps_when_only = "true";
       };
 
       master = {
         new_on_top = "true";
-        no_gaps_when_only = "true";
+        #no_gaps_when_only = "true";
       };
 
       misc = {

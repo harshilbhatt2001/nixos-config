@@ -10,6 +10,7 @@
     fzf
     pamixer
     clipman
+    cliphist
     pciutils
     difftastic
     autojump

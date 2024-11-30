@@ -30,14 +30,20 @@
     astal.url = "github:Aylur/astal";
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
     stylix.url = "github:danth/stylix/release-24.05";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
     zen-browser.url = "github:harshilbhatt2001/zen-browser-flake"; # Replace once zen's added to nixpkgs
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, hyprpanel, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          inputs.hyprpanel.overlay
+        ];
+      };
       inherit (self) outputs;
     in
     {

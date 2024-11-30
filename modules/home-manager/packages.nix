@@ -1,14 +1,14 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    gnomeExtensions.espresso
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.dash-to-dock
-
     #(jetbrains.plugins.addPlugins jetbrains.rust-rover [ "github-copilot" ])
 
     waypaper
     swaybg
+
+    bluez
+    hyprpanel
+    gpustat
 
     jdk17
     graphviz
@@ -42,10 +42,11 @@
 
     hyprlock
 
-    cursor
+    #cursor
     nrf-command-line-tools
 
-    radvd
+    tio
+    ollama
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

@@ -22,6 +22,14 @@
     { device = "/dev/disk/by-uuid/A6F4-D6CC";
       fsType = "vfat";
     };
+  
+fileSystems."/run/internal_hdd" =
+    { device = "/dev/disk/by-uuid/C01A767F1A767270";
+      fsType = "ntfs";
+      options = [ 
+         "uid=1000" "gid=1000" "dmask=007" "fmask=117"
+      ];
+    };
 
   swapDevices = [ ];
 

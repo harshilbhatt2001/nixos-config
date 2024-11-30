@@ -70,32 +70,33 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     NIXOS_OZONE_WL = "1";
+    OLLAMA_MODELS = "/run/internal_hdd/ollama-models";
   };
 
-  dconf.settings = {
-    "org/gnome/shell" = {
-      disable-user-extensions = false;
+  #dconf.settings = {
+  #  "org/gnome/shell" = {
+  #    disable-user-extensions = false;
 
-      # 'gnome-extensions list' for a list
-      enabled-extenstions = [
-        "espresso@coadmunkee.github.com"
-        "blur-my-shell@aunetx"
-        "dash-to-dock@micxgx.gmail.com"
-        "apps-menu@gnome-shell-extensions.gcampax.github.com"
-        "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
-        "drive-menu@gnome-shell-extensions.gcampax.github.com"
-        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-        "light-style@gnome-shell-extensions.gcampax.github.com"
-        "native-window-placement@gnome-shell-extensions.gcampax.github.com"
-        "places-menu@gnome-shell-extensions.gcampax.github.com"
-        "screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com"
-        "user-theme@gnome-shell-extensions.gcampax.github.com"
-        "window-list@gnome-shell-extensions.gcampax.github.com"
-        "windowsNavigator@gnome-shell-extensions.gcampax.github.com"
-        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
-      ];
-    };
-  };
+  #    # 'gnome-extensions list' for a list
+  #    enabled-extenstions = [
+  #      "espresso@coadmunkee.github.com"
+  #      "blur-my-shell@aunetx"
+  #      "dash-to-dock@micxgx.gmail.com"
+  #      "apps-menu@gnome-shell-extensions.gcampax.github.com"
+  #      "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
+  #      "drive-menu@gnome-shell-extensions.gcampax.github.com"
+  #      "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+  #      "light-style@gnome-shell-extensions.gcampax.github.com"
+  #      "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+  #      "places-menu@gnome-shell-extensions.gcampax.github.com"
+  #      "screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com"
+  #      "user-theme@gnome-shell-extensions.gcampax.github.com"
+  #      "window-list@gnome-shell-extensions.gcampax.github.com"
+  #      "windowsNavigator@gnome-shell-extensions.gcampax.github.com"
+  #      "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+  #    ];
+  #  };
+  #};
 
   home.shellAliases = {
     gg = "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an (%ae)%C(reset)' --all";
