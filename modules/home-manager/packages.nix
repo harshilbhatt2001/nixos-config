@@ -1,22 +1,19 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    #(jetbrains.plugins.addPlugins jetbrains.rust-rover [ "github-copilot" ])
-
     waypaper
     swaybg
 
-    bluez
-    hyprpanel
+    #bluez
     gpustat
 
     jdk17
     graphviz
 
     obsidian
-    #jtbrains.rust-rover
     vscode
-    rustup
+    #rustup
+    poetry
     lazygit
 
     grim
@@ -33,24 +30,34 @@
 
     nodePackages_latest.bash-language-server
 
-    #android-studio
-    #displaylink
-
     mendeley
     zlib
     cachix
 
     hyprlock
 
-    #cursor
+    nrfutil
     nrf-command-line-tools
 
     tio
     ollama
+    zls
+
+    #jetbrains.pycharm-professional
+    #jetbrains.rust-rover
+    segger-jlink
+
+    mpv
+    python2Full
+
+    gh
+    psst
+    code-cursor
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
-      "segger-jlink-qt4-796s"
+      "segger-jlink-qt4-810"
+      "python-2.7.18.8"
   ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.segger-jlink.acceptLicense = true;

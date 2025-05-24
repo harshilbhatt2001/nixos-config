@@ -24,6 +24,7 @@
         lua-language-server
         kotlin-language-server
         pyright
+        #zls
       ];
 
 

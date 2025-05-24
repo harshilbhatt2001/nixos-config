@@ -25,12 +25,13 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
   boot.supportedFilesystems = [ "ntfs" ];
   boot.kernelParams = ["nvidia-drm.modeset=1"];
-  #boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  boot.kernelPackages = pkgs.linuxPackages_6_11;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_6_11;
 
 
 
   networking.hostName = "nixos"; # Define your hostname.
+  networking.enableIPv6 = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -146,6 +147,8 @@
     theme = "where_is_my_sddm_theme";
   };
 
+  services.avahi.enable = true;
+
   # Enable Hyprland
   programs.hyprland = {
     enable = true;
@@ -159,14 +162,13 @@
 
   stylix = {
     enable = true;
-    image = ../../wallpapers/xavier-cuenca.jpg;
+    image = ../../wallpapers/CarinaNebula.png;
     polarity = "dark";
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     targets = {
       console.enable = true;
       chromium.enable = true;
       fish.enable = true;
-      gnome.enable = true; 
       grub.enable = true;
       grub.useImage = true;
       gtk.enable = true;
@@ -207,7 +209,7 @@
   #sound.enable = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -233,7 +235,7 @@
   users.users.harshil = {
     isNormalUser = true;
     description = "Harshil Bhatt";
-    extraGroups = [ "networkmanager" "wheel" "plugdev" "dialout" "docker" "libvirtd" "plugdev"];
+    extraGroups = [ "networkmanager" "wheel" "plugdev" "dialout" "docker" "libvirtd" "plugdev" "bluetooth"];
     packages = with pkgs; [
       vivaldi
       inputs.zen-browser.packages."${system}".default
@@ -256,41 +258,19 @@
     neovim.defaultEditor = true;
   };
 
-  #home-manager = {
-  #  # also pass inputs to home-manager modules
-  #  extraSpecialArgs = {inherit inputs;};
-  #  users = {
-  #    "harshil" = import ./home.nix;
-  #  };
-  #};
-
-  ## Enable automatic login for the user.
-  #services.xserver.displayManager.autoLogin.enable = true;
-  #services.xserver.displayManager.autoLogin.user = "harshil";
-
-  ## Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  #systemd.services."getty@tty1".enable = false;
-  #systemd.services."autovt@tty1".enable = false;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
     wget
-    #waybar
-    #(waybar.overrideAttrs (oldAttrs: {
-    #  mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    #})
-    #)
-    #dunst
     libnotify
     kitty
     rofi-wayland
     openocd
     where-is-my-sddm-theme
+    sbctl
     #(where-is-my-sddm-theme.override {
     #  themeConfig.General = {
     #    background = toString ../../wallpapers/xavier-cuenca.jpg;
@@ -298,6 +278,11 @@
     #    };
     #  })
   ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+      "segger-jlink-qt4-810"
+  ];
+  nixpkgs.config.segger-jlink.acceptLicense = true;
 
   xdg.portal = {
     enable = true;
@@ -329,8 +314,10 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  nix.settings.trusted-users = [ "root" "harshil" ];
+
   # Setup udev rules
-  services.udev.packages = [ pkgs.openocd ];
+  services.udev.packages = [ pkgs.openocd pkgs.nrf-udev pkgs.segger-jlink];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

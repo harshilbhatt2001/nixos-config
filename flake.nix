@@ -30,9 +30,12 @@
     astal.url = "github:Aylur/astal";
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
     stylix.url = "github:danth/stylix/release-24.05";
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    zen-browser.url = "github:harshilbhatt2001/zen-browser-flake"; # Replace once zen's added to nixpkgs
+    zen-browser.url = "github:0xc000022070/zen-browser-flake"; # Replace once zen's added to nixpkgs
   };
 
   outputs = { self, nixpkgs, home-manager, stylix, hyprpanel, ... }@inputs:
@@ -62,7 +65,12 @@
 
       homeConfigurations = {
         harshil = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [
+              inputs.hyprpanel.overlay
+            ];
+          };
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home.nix

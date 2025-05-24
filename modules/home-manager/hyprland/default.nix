@@ -12,7 +12,7 @@
         #"ags -b hypr"
         "wl-clipboard-history -t"
         "pypr"
-        "swaybg -i /home/harshil/Pictures/wallpapers/xavier-cuenca.jpg"
+        "swaybg -i /home/harshil/Pictures/wallpapers/CarinaNebula.png"
         "hyprpanel"
       ];
 
@@ -60,7 +60,7 @@
         shadow = {
           enabled = "true";
           range = "25";
-          color = "0xffbo766b";
+          #color = "0xffbo766b";
           color_inactive = "0x50000000";
         };
       };
@@ -113,7 +113,7 @@
           "$mod SHIFT, F, fullscreen,0"
 
           "$mod SHIFT, R, ${e} quit; ags -b hypr"
-          "$mod, D, ${e} -t launcher"
+          "$mod, D, exec, rofi -show drun"
           "$mod, Tab, ${e} -t overview"
           ",XF86PowerOff,  ${e} -t powermenu'"
           ",Print,         ${e} -r 'recorder.screenshot()'"

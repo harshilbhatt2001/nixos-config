@@ -7,7 +7,7 @@
     ./modules/home-manager/cli-packages.nix
     ./modules/home-manager/packages.nix
     ./modules/home-manager/nvim
-    ./modules/home-manager/ags/ags.nix
+    inputs.hyprpanel.homeManagerModules.hyprpanel
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -73,31 +73,6 @@
     OLLAMA_MODELS = "/run/internal_hdd/ollama-models";
   };
 
-  #dconf.settings = {
-  #  "org/gnome/shell" = {
-  #    disable-user-extensions = false;
-
-  #    # 'gnome-extensions list' for a list
-  #    enabled-extenstions = [
-  #      "espresso@coadmunkee.github.com"
-  #      "blur-my-shell@aunetx"
-  #      "dash-to-dock@micxgx.gmail.com"
-  #      "apps-menu@gnome-shell-extensions.gcampax.github.com"
-  #      "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
-  #      "drive-menu@gnome-shell-extensions.gcampax.github.com"
-  #      "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-  #      "light-style@gnome-shell-extensions.gcampax.github.com"
-  #      "native-window-placement@gnome-shell-extensions.gcampax.github.com"
-  #      "places-menu@gnome-shell-extensions.gcampax.github.com"
-  #      "screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com"
-  #      "user-theme@gnome-shell-extensions.gcampax.github.com"
-  #      "window-list@gnome-shell-extensions.gcampax.github.com"
-  #      "windowsNavigator@gnome-shell-extensions.gcampax.github.com"
-  #      "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
-  #    ];
-  #  };
-  #};
-
   home.shellAliases = {
     gg = "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an (%ae)%C(reset)' --all";
     gca = "git add -A; git commit -a --amend --no-edit";
@@ -107,53 +82,135 @@
     ssh = "kitty +kitten ssh";
     diff = "${pkgs.difftastic}/bin/difftastic";
   };
-  programs.fish = {
+
+  programs = {
+    fish = {
       enable = true;
       interactiveShellInit = ''
-          set fish_greeting # Disable greeting
-          '';
+        set fish_greeting # Disable greeting
+        '';
       plugins = [
-        { name = "grc"; src = pkgs.fishPlugins.grc.src; }
-        { name = "z"; src = pkgs.fishPlugins.z.src; }
-        { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
-        { name = "bass"; src = pkgs.fishPlugins.bass.src; }
-        { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
+      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+      { name = "z"; src = pkgs.fishPlugins.z.src; }
+      { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
+      { name = "bass"; src = pkgs.fishPlugins.bass.src; }
+      { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
       ];
-  };
+    };
+    neovim.enable = true;
 
-  programs.neovim.enable = true;
-
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    nix-direnv.enable = true;
-  };
-
-  programs.starship = {
+    direnv = {
       enable = true;
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Harshil Bhatt";
-    userEmail = "harshilbhatt2001@gmail.com";
-    difftastic.enable = true;
-    extraConfig = {
-      init.defaultBranch = "main";
-      rerere.enabled = "true";
-      column.ui = "auto";
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
     };
-  };
 
-  programs.kitty = {
-    enable = true;
-    settings = {
-      background_opacity = "0.6";
-    allow_remote_control = "yes";
-    window_padding_width = 4;
+    starship = {
+      enable = true;
     };
-  };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+    git = {
+      enable = true;
+      userName = "Harshil Bhatt";
+      userEmail = "harshilbhatt2001@gmail.com";
+      difftastic.enable = true;
+      extraConfig = {
+        init.defaultBranch = "main";
+        rerere.enabled = "true";
+        column.ui = "auto";
+      };
+    };
+
+    kitty = {
+      enable = true;
+      settings = {
+        background_opacity = "0.6";
+        allow_remote_control = "yes";
+        window_padding_width = 4;
+      };
+    };
+
+    hyprpanel = {
+      enable = true;
+      overlay.enable = true;
+      hyprland.enable = true;
+      overwrite.enable = true;
+
+      #layout = {
+      #  "bar.layouts" = {
+      #    "0" = {
+      #      left = [ "dashboard" "workspaces" "windowtitle"];
+      #      middle = [ "media" ];
+      #      right = [ "volume" "network" "bluetooth" "battery" "systray" "clock" "notifications" ];
+      #    };
+      #    "*" = {
+      #      left = [ "dashboard" "workspaces" "windowtitle"];
+      #      middle = [ "media" ];
+      #      right = [ "volume" "clock" "notifications" ];
+      #    };
+      #  };
+      #};
+
+      settings = {
+        bar.launcher.autoDetectIcon = true;
+        #bar.workspace = {
+        #  show_icons = true;
+        #  applicationIconOncePerWorkspace = true;
+        #};
+
+        bar.battery.hideLabelWhenFull = true;
+
+        menus = {
+          media = {
+            displayTime = true;
+            displayTimeTooltip = true;
+          };
+          clock = {
+            time = {
+              military = true;
+              hideSeconds = true;
+            };
+            weather = {
+              unit = "metric";
+              location = "Delft";
+            };
+          };
+
+          dashboard = {
+            #directories.enable = true;
+            powermenu.avatar.image = "/home/harshil/Pictures/Squidward_Spongepocalypse.png";
+          };
+
+          power = {
+            lowBatteryNotification = true;
+            lowBatteryThreshold = 30;
+          };
+
+        };
+
+        theme = {
+          matugen = true;
+          matugen_settings = {
+            scheme_type = "fidelity";
+            variation = "standard_3";
+            mode = "dark";
+          };
+          bar = {
+            floating = true;
+            #transpatent = true;
+            opacity = 50;
+            buttons.enableBorders = false;
+          };
+        };
+
+        wallpaper.enable = true;
+        wallpaper.image = "/home/harshil/Pictures/wallpapers/CarinaNebula.png";
+      };
+
+
+    };
+
+    # Let Home Manager install and manage itself.
+    home-manager.enable = true;
+  };
 }

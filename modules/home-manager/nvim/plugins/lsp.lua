@@ -120,6 +120,11 @@ require 'lspconfig'.kotlin_language_server.setup {
     capabilities = capabilities,
 }
 
+require 'lspconfig'.zls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
 require('rust-tools').setup({
     server = {
         on_attach = on_attach,
