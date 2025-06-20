@@ -2,8 +2,9 @@
 
 {
   imports = [
-    ./modules/home-manager/hyprland
+    ./modules/wm/hyprland
     #./modules/home-manager/waybar
+    ./modules/wm/quickshell
     ./modules/home-manager/cli-packages.nix
     ./modules/home-manager/packages.nix
     ./modules/home-manager/nvim
@@ -22,7 +23,7 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  home.stateVersion = "25.05"; # Please read the comment before changing.
 
   nixpkgs = {
     overlays = with outputs.overlays; [
