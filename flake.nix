@@ -41,9 +41,14 @@
     };
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake"; # Replace once zen's added to nixpkgs
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, hyprpanel, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, hyprpanel, lanzaboote, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -64,6 +69,26 @@
           modules = [
             ./hosts/harshil/configuration.nix
             stylix.nixosModules.stylix
+
+            lanzaboote.nixosModules.lanzaboote
+
+            ({ pkgs, lib, ... }: { 
+              environment.systemPackages = [
+                # For debugging and troubleshooting Secure Boot.
+                pkgs.sbctl
+              ];
+
+              # Lanzaboote currently replaces the systemd-boot module.
+              # This setting is usually set to true in configuration.nix
+              # generated at installation time. So we force it to false
+              # for now.
+              boot.loader.systemd-boot.enable = lib.mkForce false;
+
+              boot.lanzaboote = {
+                enable = true;
+                pkiBundle = "/var/lib/sbctl";
+              };
+            })
           ];
         };
       };
