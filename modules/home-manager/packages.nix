@@ -28,8 +28,6 @@
     zlib
     cachix
 
-    hyprlock
-
     nrfutil
     nrf-command-line-tools
 
@@ -48,6 +46,8 @@
     chromium
 
     zathura
+    hypridle
+    geoclue2
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

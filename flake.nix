@@ -14,26 +14,10 @@
       flake = false;
     };
 
-    #hyprland.url = "github:hyprwm/Hyprland";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    #hyprland.url = "git+https://github.com/andresilva/Hyprland?ref=nix-build-improvements&submodules=1";
-    hyprland-plugins = {
-        url = "github:hyprwm/hyprland-plugins";
-        inputs.hyprland.follows = "hyprland";
-    };
-    hyprland-hyprspace = {
-        url = "github:KZDKM/hyprspace";
-        inputs.hyprland.follows = "hyprland";
-    };
 
-    ags.url = "github:Aylur/ags";
-    astal.url = "github:Aylur/astal";
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
     stylix.url = "github:danth/stylix/release-24.05";
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
@@ -53,7 +37,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, hyprpanel, lanzaboote, caelestia-shell, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, lanzaboote, caelestia-shell, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {

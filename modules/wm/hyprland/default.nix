@@ -1,16 +1,23 @@
-{ ... }:
-{
+{pkgs, ... }: {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
     xwayland.enable = true;
 
-    #plugins = [];
-
     settings = {
       exec-once = [
-        "wl-clipboard-history -t"
+        "wl-paste --type text --watch cliphist store"
+        "wl-paste --type image --watch cliphist store"
+        "trash-empty 30"
+        "hyprctl setcursor sweet-cursors 24"
+        "${pkgs.geoclue2}/lib/geoclue-2.0/demos/agent"
+        "sleep 1 && gammastep"
+        "sway-audio-idle-inhibit --ignore-source-outputs cava"
+        "mpris-proxy"
+        "caelestia resizer -d"
+        "caelestia shell -d"
         "pypr"
+        "hypridle"
       ];
 
       monitor = [
@@ -20,11 +27,13 @@
   
       general = {
         layout = "dwindle";
-        #gaps_in = "1";   #7
-        #gaps_out = "0";  #2
-        border_size = "2";
-        "col.active_border" = "0x66333333";
-        "col.inactive_border" = "0x66333333";
+        allow_tearing = false;
+        gaps_workspaces = 20;
+        gaps_in = 10;
+        gaps_out = 40;
+        border_size = 3;
+        "col.active_border" = "rgba(c2c1ffee)";
+        "col.inactive_border" = "rgba(47464f11)";
       };
 
       gestures = {
@@ -44,29 +53,30 @@
       };
 
       decoration = {
-        rounding = "19";
-# Your blur "amount" is blur_size * blur_passes, but high blur_size (over around 5-ish) will produce artifacts.
-# if you want heavy blur, you need to up the blur_passes.
-# the more passes, the more you can up the blur_size without noticing artifacts.
+        rounding = 10;
         blur = {
-          enabled = "true";
-          size = "13"; # minimum 1
-            passes = "3"; # minimum 1, more passes = more resource intensive.
-            new_optimizations = "true";
+          enabled = true;
+          xray = false;
+          special = false;
+          ignore_opacity = true;
+          new_optimizations = true;
+          popups = true;
+          input_methods = true;
+          size = 8;
+          passes = 3;
         };
         shadow = {
-          enabled = "true";
-          range = "25";
-          #color = "0xffbo766b";
-          color_inactive = "0x50000000";
+          enabled = true;
+          range = 20;
+          render_power = 3;
+          color = "rgba(201f23d4)";
         };
       };
 
       dwindle = {
-        pseudotile = "1";
-        force_split = "0";
-        animation = "windows,1,8,default,popin 80%";
-        #no_gaps_when_only = "true";
+        preserve_split = true;
+        smart_split = false;
+        smart_resizing = true;
       };
 
       master = {
@@ -75,11 +85,19 @@
       };
 
       misc = {
-        disable_hyprland_logo = "true";
-        disable_splash_rendering = "true";
-        mouse_move_enables_dpms = "true";
-        vfr = "true";
-        #hide_cursor_on_touch = "true";
+        vfr = true;
+        animate_manual_resizes = false;
+        animate_mouse_windowdragging = false;
+        disable_hyprland_logo = true;
+        force_default_wallpaper = 0;
+        new_window_takes_over_fullscreen = 2;
+        allow_session_lock_restore = true;
+        middle_click_paste = false;
+        focus_on_activate = true;
+        session_lock_xray = true;
+        mouse_move_enables_dpms = true;
+        key_press_enables_dpms = true;
+        background_color = "rgb(201f23)";
       };
 
       animations = {
@@ -94,14 +112,11 @@
           "layersIn, 1, 5, emphasizedDecel, slide"
           "layersOut, 1, 4, emphasizedAccel, slide"
           "fadeLayers, 1, 5, standard"
-
           "windowsIn, 1, 5, emphasizedDecel"
           "windowsOut, 1, 3, emphasizedAccel"
           "windowsMove, 1, 6, standard"
           "workspaces, 1, 5, standard"
-
           "specialWorkspace, 1, 4, specialWorkSwitch, slidefadevert 15%"
-
           "fade, 1, 6, standard"
           "fadeDim, 1, 6, standard"
           "border, 1, 6, standard"
@@ -111,7 +126,6 @@
       "$mod" = "SUPER";
 
       bind = let 
-        e = "exec, ags -b hypr";
       in
         [
           "$mod, RETURN, exec, kitty"
@@ -120,12 +134,10 @@
           "$mod, F, fullscreen,1"
           "$mod SHIFT, F, fullscreen,0"
 
-          "$mod SHIFT, R, ${e} quit; ags -b hypr"
           "$mod, D, exec, caelestia shell drawers toggle launcher"
-          "$mod, Tab, ${e} -t overview"
           ",XF86PowerOff, exec,  caelestia shell drawers toggle session"
-          ",Print,         ${e} -r 'recorder.screenshot()'"
-          "SHIFT,Print,    ${e} -r 'recorder.screenshot(true)'"
+          ",Print,         caelestia screenshot"
+          "SHIFT,Print,    caelestia screenshot -f -r"
 
           "$mod SHIFT, V, togglesplit" # dwindle
 
