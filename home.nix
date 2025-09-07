@@ -3,11 +3,10 @@
 {
   imports = [
     ./modules/wm/hyprland
-    #./modules/home-manager/waybar
     ./modules/home-manager/cli-packages.nix
     ./modules/home-manager/packages.nix
     ./modules/home-manager/nvim
-    inputs.hyprpanel.homeManagerModules.hyprpanel
+    #inputs.hyprpanel.homeManagerModules.hyprpanel
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -130,85 +129,85 @@
       };
     };
 
-    hyprpanel = {
-      enable = true;
-      #overlay.enable = true;
-      #hyprland.enable = true;
-      #overwrite.enable = true;
+    #hyprpanel = {
+    #  enable = true;
+    #  #overlay.enable = true;
+    #  #hyprland.enable = true;
+    #  #overwrite.enable = true;
 
-      #layout = {
-      #  "bar.layouts" = {
-      #    "0" = {
-      #      left = [ "dashboard" "workspaces" "windowtitle"];
-      #      middle = [ "media" ];
-      #      right = [ "volume" "network" "bluetooth" "battery" "systray" "clock" "notifications" ];
-      #    };
-      #    "*" = {
-      #      left = [ "dashboard" "workspaces" "windowtitle"];
-      #      middle = [ "media" ];
-      #      right = [ "volume" "clock" "notifications" ];
-      #    };
-      #  };
-      #};
+    #  #layout = {
+    #  #  "bar.layouts" = {
+    #  #    "0" = {
+    #  #      left = [ "dashboard" "workspaces" "windowtitle"];
+    #  #      middle = [ "media" ];
+    #  #      right = [ "volume" "network" "bluetooth" "battery" "systray" "clock" "notifications" ];
+    #  #    };
+    #  #    "*" = {
+    #  #      left = [ "dashboard" "workspaces" "windowtitle"];
+    #  #      middle = [ "media" ];
+    #  #      right = [ "volume" "clock" "notifications" ];
+    #  #    };
+    #  #  };
+    #  #};
 
-      settings = {
-        bar.launcher.autoDetectIcon = true;
-        #bar.workspace = {
-        #  show_icons = true;
-        #  applicationIconOncePerWorkspace = true;
-        #};
+    #  settings = {
+    #    bar.launcher.autoDetectIcon = true;
+    #    #bar.workspace = {
+    #    #  show_icons = true;
+    #    #  applicationIconOncePerWorkspace = true;
+    #    #};
 
-        bar.battery.hideLabelWhenFull = true;
+    #    bar.battery.hideLabelWhenFull = true;
 
-        menus = {
-          media = {
-            displayTime = true;
-            displayTimeTooltip = true;
-          };
-          clock = {
-            time = {
-              military = true;
-              hideSeconds = true;
-            };
-            weather = {
-              unit = "metric";
-              location = "Delft";
-            };
-          };
+    #    menus = {
+    #      media = {
+    #        displayTime = true;
+    #        displayTimeTooltip = true;
+    #      };
+    #      clock = {
+    #        time = {
+    #          military = true;
+    #          hideSeconds = true;
+    #        };
+    #        weather = {
+    #          unit = "metric";
+    #          location = "Delft";
+    #        };
+    #      };
 
-          dashboard = {
-            #directories.enable = true;
-            powermenu.avatar.image = "/home/harshil/Pictures/Squidward_Spongepocalypse.png";
-          };
+    #      dashboard = {
+    #        #directories.enable = true;
+    #        powermenu.avatar.image = "/home/harshil/Pictures/Squidward_Spongepocalypse.png";
+    #      };
 
-          power = {
-            lowBatteryNotification = true;
-            lowBatteryThreshold = 30;
-          };
+    #      power = {
+    #        lowBatteryNotification = true;
+    #        lowBatteryThreshold = 30;
+    #      };
 
-        };
+    #    };
 
-        theme = {
-          matugen = true;
-          matugen_settings = {
-            scheme_type = "fidelity";
-            variation = "standard_3";
-            mode = "dark";
-          };
-          bar = {
-            floating = true;
-            #transpatent = true;
-            opacity = 50;
-            buttons.enableBorders = false;
-          };
-        };
+    #    theme = {
+    #      matugen = true;
+    #      matugen_settings = {
+    #        scheme_type = "fidelity";
+    #        variation = "standard_3";
+    #        mode = "dark";
+    #      };
+    #      bar = {
+    #        floating = true;
+    #        #transpatent = true;
+    #        opacity = 50;
+    #        buttons.enableBorders = false;
+    #      };
+    #    };
 
-        wallpaper.enable = true;
-        wallpaper.image = "/home/harshil/Pictures/wallpapers/CarinaNebula.png";
-      };
+    #    wallpaper.enable = true;
+    #    wallpaper.image = "/home/harshil/Pictures/wallpapers/CarinaNebula.png";
+    #  };
 
 
-    };
+    #};
 
     caelestia = {
       enable = true;

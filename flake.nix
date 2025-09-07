@@ -58,9 +58,6 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [
-          inputs.hyprpanel.overlay
-        ];
       };
       inherit (self) outputs;
     in
@@ -102,9 +99,6 @@
         harshil = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             inherit system;
-            overlays = [
-              inputs.hyprpanel.overlay
-            ];
           };
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [

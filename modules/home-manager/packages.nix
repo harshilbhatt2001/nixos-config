@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    waypaper
-    swaybg
-
     gpustat
 
     jdk17

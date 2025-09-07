@@ -9,11 +9,8 @@
 
     settings = {
       exec-once = [
-        #"ags -b hypr"
         "wl-clipboard-history -t"
         "pypr"
-        "swaybg -i /home/harshil/Pictures/wallpapers/CarinaNebula.png"
-        "hyprpanel"
       ];
 
       monitor = [
@@ -85,18 +82,29 @@
         #hide_cursor_on_touch = "true";
       };
 
-# Blurs for waybar
-      blurls = "waybar";
-
       animations = {
-        enabled = "1";
-        bezier = "overshot,0.13,0.99,0.29,1.1";
+        enabled = true;
+        bezier = [
+          "specialWorkSwitch, 0.05, 0.7, 0.1, 1"
+          "emphasizedAccel, 0.3, 0, 0.8, 0.15"
+          "emphasizedDecel, 0.05, 0.7, 0.1, 1"
+          "standard, 0.2, 0, 0, 1"
+        ];
         animation = [
-          "windows,1,4,overshot,slide"
-          "fadeIn,1,8,default"
-          "workspaces,1,8.8,overshot,slide"
-          "border,1,12,default"
-          "windows,1,6,default,popin 80%"
+          "layersIn, 1, 5, emphasizedDecel, slide"
+          "layersOut, 1, 4, emphasizedAccel, slide"
+          "fadeLayers, 1, 5, standard"
+
+          "windowsIn, 1, 5, emphasizedDecel"
+          "windowsOut, 1, 3, emphasizedAccel"
+          "windowsMove, 1, 6, standard"
+          "workspaces, 1, 5, standard"
+
+          "specialWorkspace, 1, 4, specialWorkSwitch, slidefadevert 15%"
+
+          "fade, 1, 6, standard"
+          "fadeDim, 1, 6, standard"
+          "border, 1, 6, standard"
         ];
       };
 
@@ -113,9 +121,9 @@
           "$mod SHIFT, F, fullscreen,0"
 
           "$mod SHIFT, R, ${e} quit; ags -b hypr"
-          "$mod, D, exec, rofi -show drun"
+          "$mod, D, exec, caelestia shell drawers toggle launcher"
           "$mod, Tab, ${e} -t overview"
-          ",XF86PowerOff,  ${e} -t powermenu'"
+          ",XF86PowerOff, exec,  caelestia shell drawers toggle session"
           ",Print,         ${e} -r 'recorder.screenshot()'"
           "SHIFT,Print,    ${e} -r 'recorder.screenshot(true)'"
 
