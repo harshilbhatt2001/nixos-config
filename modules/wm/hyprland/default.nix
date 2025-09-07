@@ -136,8 +136,8 @@
 
           "$mod, D, exec, caelestia shell drawers toggle launcher"
           ",XF86PowerOff, exec,  caelestia shell drawers toggle session"
-          ",Print,         caelestia screenshot"
-          "SHIFT,Print,    caelestia screenshot -f -r"
+          ",Print, exec,         caelestia screenshot"
+          "SHIFT,Print, exec,   caelestia screenshot -f -r"
 
           "$mod SHIFT, V, togglesplit" # dwindle
 
