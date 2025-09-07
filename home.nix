@@ -4,7 +4,6 @@
   imports = [
     ./modules/wm/hyprland
     #./modules/home-manager/waybar
-    ./modules/wm/quickshell
     ./modules/home-manager/cli-packages.nix
     ./modules/home-manager/packages.nix
     ./modules/home-manager/nvim
@@ -133,9 +132,9 @@
 
     hyprpanel = {
       enable = true;
-      overlay.enable = true;
-      hyprland.enable = true;
-      overwrite.enable = true;
+      #overlay.enable = true;
+      #hyprland.enable = true;
+      #overwrite.enable = true;
 
       #layout = {
       #  "bar.layouts" = {
@@ -211,7 +210,28 @@
 
     };
 
-    # Let Home Manager install and manage itself.
+    caelestia = {
+      enable = true;
+      systemd = {
+        #enable = false; # if you prefer starting from your compositor
+        target = "graphical-session.target";
+        environment = [];
+      };
+      settings = {
+        bar.status = {
+          showBattery = true;
+        };
+        paths.wallpaperDir = "~/Pictures/wallpapers";
+      };
+      cli = {
+        enable = true; # Also add caelestia-cli to path
+          settings = {
+            theme.enableGtk = false;
+          };
+      };
+    };
+
+# Let Home Manager install and manage itself.
     home-manager.enable = true;
   };
 }

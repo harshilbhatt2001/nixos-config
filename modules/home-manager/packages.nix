@@ -4,7 +4,6 @@
     waypaper
     swaybg
 
-    #bluez
     gpustat
 
     jdk17
@@ -12,7 +11,6 @@
 
     obsidian
     vscode
-    #rustup
     poetry
     lazygit
 
@@ -30,7 +28,6 @@
 
     nodePackages_latest.bash-language-server
 
-    mendeley
     zlib
     cachix
 
@@ -43,16 +40,17 @@
     ollama
     zls
 
-    #jetbrains.pycharm-professional
-    #jetbrains.rust-rover
     segger-jlink
 
     mpv
-    python2Full
 
     gh
     psst
-    code-cursor
+
+    rquickshare
+    chromium
+
+    zathura
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

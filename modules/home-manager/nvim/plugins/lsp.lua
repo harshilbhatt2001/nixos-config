@@ -114,6 +114,11 @@ require('lspconfig').pyright.setup {
     capabilities = capabilities,
 }
 
+require('lspconfig').qmlls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
 require 'lspconfig'.kotlin_language_server.setup {
     on_attach = on_attach,
     flags = lsp_flags,

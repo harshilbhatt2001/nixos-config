@@ -35,12 +35,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zen-browser.url = "github:0xc000022070/zen-browser-flake"; # Replace once zen's added to nixpkgs
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
+      # to have it up-to-date or simply don't specify the nixpkgs input
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
@@ -48,7 +53,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, hyprpanel, lanzaboote, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, hyprpanel, lanzaboote, caelestia-shell, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -103,6 +108,7 @@
           };
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
+            caelestia-shell.homeManagerModules.default # <-- Add this line
             ./home.nix
           ];
         };
