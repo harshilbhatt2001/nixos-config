@@ -11,4 +11,12 @@ return {
       vim.keymap.set('n', '<leader>mh', require('harpoon.ui').toggle_quick_menu, "[M]enu [H]arpoon")
     end,
   },
+  -- Uncommented undotree as it was available in the original overlay
+  -- {
+  --   "jiaoshijie/undotree",
+  --   dependencies = "nvim-lua/plenary.nvim",
+  --   config = function()
+  --     require("undotree").setup()
+  --   end,
+  -- },
 }

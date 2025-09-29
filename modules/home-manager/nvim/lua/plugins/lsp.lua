@@ -3,6 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "folke/neodev.nvim",
+      "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
       local on_attach = function(_, bufnr)
