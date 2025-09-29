@@ -1,0 +1,185 @@
+return {
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "folke/neodev.nvim",
+    },
+    config = function()
+      local on_attach = function(_, bufnr)
+        local nmap = function(keys, func, desc)
+          if desc then
+            desc = 'LSP: ' .. desc
+          end
+
+          vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+        end
+
+        nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+        nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+        nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+        nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+        nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+        nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+        nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+        nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+        -- See `:help K` for why this keymap
+        nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+        nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+        -- Lesser used LSP functionality
+        nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+        nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+        nmap('<leader>wl', function()
+          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, '[W]orkspace [L]ist Folders')
+
+        -- Create a command `:Format` local to the LSP buffer
+        vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+          if vim.lsp.buf.format then
+            vim.lsp.buf.format()
+          elseif vim.lsp.buf.formatting then
+            vim.lsp.buf.formatting()
+          end
+        end, { desc = 'Format current buffer with LSP' })
+      end
+
+      -- LSP Diagnostics Options Setup
+      local sign = function(opts)
+        vim.fn.sign_define(opts.name, {
+          texthl = opts.name,
+          text = opts.text,
+          numhl = ''
+        })
+      end
+
+      sign({ name = 'DiagnosticSignError', text = '' })
+      sign({ name = 'DiagnosticSignWarn', text = '' })
+      sign({ name = 'DiagnosticSignHint', text = '' })
+      sign({ name = 'DiagnosticSignInfo', text = '' })
+
+      vim.diagnostic.config({
+        virtual_text = false,
+        signs = true,
+        update_in_insert = true,
+        underline = true,
+        severity_sort = false,
+        float = {
+          border = 'rounded',
+          source = 'always',
+          header = '',
+          prefix = '',
+        },
+      })
+
+      vim.cmd([[
+      autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+      ]])
+
+      -- LSP Configuration
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+      require('neodev').setup({
+        override = function(root_dir, library)
+          if root_dir:find("/home/harshil/.dotfiles", 1, true) == 1 then
+            library.enabled = true
+            library.plugins = true
+          end
+        end,
+      })
+
+      require('lspconfig').lua_ls.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        root_dir = function()
+          return vim.loop.cwd()
+        end,
+        cmd = { "lua-language-server" },
+        settings = {
+          Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+          },
+        }
+      }
+
+      require('lspconfig').clangd.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+
+      require('lspconfig').pyright.setup {
+        cmd = { "pyright-langserver", "--stdio" },
+        root_dir = function()
+          return vim.loop.cwd()
+        end,
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+
+      require('lspconfig').qmlls.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+
+      require('lspconfig').kotlin_language_server.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+
+      require('lspconfig').zls.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+    end,
+  },
+  {
+    "simrat39/rust-tools.nvim",
+    dependencies = { "neovim/nvim-lspconfig" },
+    config = function()
+      require('rust-tools').setup({
+        server = {
+          on_attach = function(_, bufnr)
+            -- LSP on_attach logic here if needed
+          end,
+          settings = {
+            ["rust-analyzer"] = {
+              checkOnSave = {
+                command = "clippy"
+              },
+            },
+          }
+        },
+      })
+    end,
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    config = function()
+      require("typescript-tools").setup {
+        settings = {
+          tsserver_file_preferences = function(ft)
+            -- Some "ifology" using `ft` of opened file
+            return {
+              includeInlayParameterNameHints = "all",
+              includeCompletionsForModuleExports = true,
+              quotePreference = "auto",
+            }
+          end,
+          tsserver_format_options = function(ft)
+            -- Some "ifology" using `ft` of opened file
+            return {
+              allowIncompleteCompletions = false,
+              allowRenameOfImportPath = false,
+            }
+          end
+        },
+      }
+    end,
+  },
+}
